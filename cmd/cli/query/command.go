@@ -63,14 +63,18 @@ func Command(sniiimAddr string, rContainer repository.Repository) *cobra.Command
 					logrus.Fatal(err)
 				}
 
-				request.PrintResultTable(results)
+				if len(results) == 0 {
+					logrus.Warn("No se encontraron resultados")
+				} else {
+					request.PrintResultTable(results)
+				}
 
 				if save {
 					rContainer.Consult.SaveOne(*newConsult)
 				} else {
 					res, err := confirmPrompt("¿Desea guardar la consulta?")
 					if err != nil {
-						logrus.Fatal(err)
+						logrus.Warn("No se guardará el query")
 					}
 					if res == "y" {
 						rContainer.Consult.SaveOne(*newConsult)
