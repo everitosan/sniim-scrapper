@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/everitosan/sniim-scrapper/cmd/cli/consult"
+	"github.com/everitosan/sniim-scrapper/cmd/cli/query"
 	"github.com/everitosan/sniim-scrapper/cmd/cli/initial"
 	"github.com/everitosan/sniim-scrapper/cmd/cli/request"
 	"github.com/everitosan/sniim-scrapper/internal/config"
@@ -67,7 +67,7 @@ func main() {
 	rootCmd.Flags().BoolP("version", "v", false, "Show version of the cli")
 
 	rootCmd.AddCommand(initial.Command(config.SNIIM_ADDR, rContainer))
-	rootCmd.AddCommand(consult.Command(config.SNIIM_ADDR, rContainer))
+	rootCmd.AddCommand(query.Command(config.SNIIM_ADDR, rContainer))
 	rootCmd.AddCommand(request.Command(config.SNIIM_ADDR, rContainer.Consult, rContainer.ConsultResponse))
 	rootCmd.Execute()
 }

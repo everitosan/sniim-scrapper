@@ -35,10 +35,10 @@ Usage:
 
 Available Commands:
   completion  Generate the autocompletion script for the specified shell
-  consult     Manage consults
   help        Help about any command
-  init        Create catalogues
-  request     Request information
+  init        Crea los catálogos
+  query       Administra los queries
+  request     Consulta de información
 
 Flags:
   -h, --help      help for sniim-cli
@@ -63,48 +63,48 @@ Para esto existe el comando init.
 🕹️ *Carga de catálogos.*
 
 ```bash
-sniim-cli init
+./sniim-cli init
 ```
 ![](./docs/img/init.png)
 
 Registro de consultas
 ---
 
-Para poder saber el precio de algún artículo, podemos crear una consulta. 
+Para poder saber el precio de algún artículo, podemos crear un query. 
 
-El comando **consult** con la bandera **-c** ó **--create** invocará una serie de preguntas basadas en la categoría y artículo seleccionados.
+El comando **query** con la bandera **-c** ó **--create** invocará una serie de preguntas basadas en la categoría y artículo seleccionados.
 
 Si deseamos guardar esa consulta para volver a ejecutarla posteriormente, podemos agregar la bandera **-s** ó **--save**.
 
-🕹️ *Crea un registro de consulta.*
+🕹️ *Crea un query.*
 
 ```bash
-sniim-cli consult -c
+./sniim-cli query -c
 ```
-![](./docs/img/consult--create.png)
+![](./docs/img/query--create.png)
 
 > 📝 Nota:  
 *Al usar la palabra reservada **now**, estaremos indicando que la fecha de interés será la fecha en la que se ejecute la petición con el comando **request**.*
 
 También podemos mostar una lista de las consultas que tenemos guardadas en registros.
 
-🕹️ *Listar las consultas registradas.*
+🕹️ *Listar los queries guardados.*
 
 ```bash
-sniim-cli consult -l
+./sniim-cli query -l
 ```
 
-![](./docs/img/consult--list.png)
+![](./docs/img/query--list.png)
 
-Ejecución de Consultas
+Ejecución de Queries
 ---
 
-Si deseamos repetir alguna de las consultas guardadas, podemos usar el comando request.
+Si deseamos repetir alguna de los queries guardados, podemos usar el comando request.
 
 🕹️ *Realiza una consulta.*
 
 ```bash
-sniim-cli request -i [índice]
+./sniim-cli request -i [índice]
 ```
 
 ![](./docs/img/request--index.png)

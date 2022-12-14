@@ -15,8 +15,8 @@ const saveFlag = "save"
 func Command(sniimAddr string, consultRepo consult.ConsultRepository, responseRepo consult.ConsultResponseRepository) *cobra.Command {
 	requestCommand := &cobra.Command{
 		Use:   "request",
-		Short: "Request information",
-		Long:  "Request information from a consult register",
+		Short: "Consulta de información",
+		Long:  "Consulta la información de un query",
 		Run: func(cmd *cobra.Command, args []string) {
 
 			index, _ := cmd.Flags().GetInt32(indexFlag)
@@ -66,9 +66,9 @@ func Command(sniimAddr string, consultRepo consult.ConsultRepository, responseRe
 		},
 	}
 
-	requestCommand.Flags().Int32P(indexFlag, "i", -1, "Request consult by index")
-	requestCommand.Flags().BoolP(allFlag, "a", false, "Request all consults registered")
-	requestCommand.Flags().BoolP(saveFlag, "s", false, "Save the results of a request")
+	requestCommand.Flags().Int32P(indexFlag, "i", -1, "Realiza una consulta basado en el índice de query")
+	requestCommand.Flags().BoolP(allFlag, "a", false, "Realiza todas las consultas de los queries guardados")
+	requestCommand.Flags().BoolP(saveFlag, "s", false, "Guarda el resultado de los queries ejecutados")
 
 	return requestCommand
 }

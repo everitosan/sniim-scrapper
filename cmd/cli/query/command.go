@@ -1,4 +1,4 @@
-package consult
+package query
 
 import (
 	"fmt"
@@ -18,9 +18,9 @@ const saveConsultFlag = "save"
 
 func Command(sniiimAddr string, rContainer repository.Repository) *cobra.Command {
 	consultCommand := &cobra.Command{
-		Use:   "consult",
-		Short: "Manage consults",
-		Long:  "Can create and list consults",
+		Use:   "query",
+		Short: "Administra los queries",
+		Long:  "Puede crear, guardar y listar los queries",
 		Run: func(cmd *cobra.Command, args []string) {
 
 			list, _ := cmd.Flags().GetBool(listCosultFlag)
@@ -92,10 +92,10 @@ func Command(sniiimAddr string, rContainer repository.Repository) *cobra.Command
 		},
 	}
 
-	consultCommand.Flags().BoolP(createCosultFlag, "c", false, "Create a consult")
-	consultCommand.Flags().BoolP(saveConsultFlag, "s", false, "Save a consult register")
-	consultCommand.Flags().BoolP(listCosultFlag, "l", false, "List all consults")
-	consultCommand.Flags().Int16P(deleteCosultFlag, "d", -1, "Delete a consult register")
+	consultCommand.Flags().BoolP(createCosultFlag, "c", false, "Crea un query")
+	consultCommand.Flags().BoolP(saveConsultFlag, "s", false, "Bandera que indica si debe guardarse el query")
+	consultCommand.Flags().BoolP(listCosultFlag, "l", false, "Muestra todos los queries guardados")
+	consultCommand.Flags().Int16P(deleteCosultFlag, "d", -1, "Elimina el query indicado")
 
 	return consultCommand
 }

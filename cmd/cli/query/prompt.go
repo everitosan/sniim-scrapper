@@ -1,4 +1,4 @@
-package consult
+package query
 
 import (
 	"fmt"

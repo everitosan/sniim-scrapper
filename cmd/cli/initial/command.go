@@ -9,8 +9,8 @@ import (
 func Command(sniimAddr string, rContainer repository.Repository) *cobra.Command {
 	return &cobra.Command{
 		Use:   "init",
-		Short: "Create catalogues",
-		Long:  "Retrieve information from source and create catalogues",
+		Short: "Crea los catálogos",
+		Long:  "Obtiene la información de la fuente y crea los catálogos",
 		Run: func(cmd *cobra.Command, args []string) {
 			scraper.InitCatalogues(sniimAddr, rContainer)
 		},
