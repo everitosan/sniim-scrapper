@@ -3,8 +3,8 @@ package main
 import (
 	"fmt"
 
-	"github.com/everitosan/sniim-scrapper/cmd/cli/query"
 	"github.com/everitosan/sniim-scrapper/cmd/cli/initial"
+	"github.com/everitosan/sniim-scrapper/cmd/cli/query"
 	"github.com/everitosan/sniim-scrapper/cmd/cli/request"
 	"github.com/everitosan/sniim-scrapper/internal/config"
 	"github.com/everitosan/sniim-scrapper/internal/transport/repository"
@@ -24,8 +24,8 @@ func main() {
 	// Repositories
 	marketRepo, _ := filestorage.NewMarketFileRepository(config.CATALOGUE_SRC)
 	paramsRepo, _ := filestorage.NewParamsFileRepository(config.CATALOGUE_SRC, "params")
-	consultRepo, _ := filestorage.NewConsultFileRepository(config.CATALOGUE_SRC, "consults")
-	consultResponseRepo, _ := filestorage.NewConsultResponseFileRepository(config.CATALOGUE_SRC, "consultsResponses")
+	queryRepo, _ := filestorage.NewQueryFileRepository(config.CATALOGUE_SRC, "queries")
+	consultResponseRepo, _ := filestorage.NewConsultResponseFileRepository(config.CATALOGUE_SRC, "responses")
 
 	productRepo, _ := filestorage.NewProductFileRepository(config.CATALOGUE_SRC, "product")
 	productSourceRepo, _ := filestorage.NewOptionSelectFileRepository(config.CATALOGUE_SRC, "productSource")
@@ -38,7 +38,7 @@ func main() {
 	rContainer := repository.Repository{
 		Market:            marketRepo,
 		Params:            paramsRepo,
-		Consult:           consultRepo,
+		Query:             queryRepo,
 		ConsultResponse:   consultResponseRepo,
 		Product:           productRepo,
 		ProductSource:     productSourceRepo,
@@ -68,6 +68,6 @@ func main() {
 
 	rootCmd.AddCommand(initial.Command(config.SNIIM_ADDR, rContainer))
 	rootCmd.AddCommand(query.Command(config.SNIIM_ADDR, rContainer))
-	rootCmd.AddCommand(request.Command(config.SNIIM_ADDR, rContainer.Consult, rContainer.ConsultResponse))
+	rootCmd.AddCommand(request.Command(config.SNIIM_ADDR, rContainer.Query, rContainer.ConsultResponse))
 	rootCmd.Execute()
 }

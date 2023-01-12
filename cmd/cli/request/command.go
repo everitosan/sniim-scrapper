@@ -12,7 +12,7 @@ const allFlag = "all"
 const indexFlag = "index"
 const saveFlag = "save"
 
-func Command(sniimAddr string, consultRepo consult.ConsultRepository, responseRepo consult.ConsultResponseRepository) *cobra.Command {
+func Command(sniimAddr string, queryRepo consult.QueryRepository, responseRepo consult.ConsultResponseRepository) *cobra.Command {
 	requestCommand := &cobra.Command{
 		Use:   "request",
 		Short: "Consulta de información",
@@ -21,7 +21,7 @@ func Command(sniimAddr string, consultRepo consult.ConsultRepository, responseRe
 
 			index, _ := cmd.Flags().GetInt32(indexFlag)
 			shouldSave, _ := cmd.Flags().GetBool(saveFlag)
-			consults, err := consultRepo.GetAll()
+			queries, err := queryRepo.GetAll()
 
 			if err != nil {
 				logrus.Fatal(err)
@@ -32,12 +32,12 @@ func Command(sniimAddr string, consultRepo consult.ConsultRepository, responseRe
 				/*
 				* Case for makinng a single request
 				 */
-				if int(index) >= len(consults) {
+				if int(index) >= len(queries) {
 					logrus.Warnf("No existe consulta número %d", index)
 					return
 				}
 
-				selectedConsult := consults[index]
+				selectedConsult := queries[index]
 				results, err := consult.Scrap(sniimAddr, selectedConsult)
 
 				if err != nil {

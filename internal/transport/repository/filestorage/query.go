@@ -9,13 +9,13 @@ import (
 	"github.com/everitosan/sniim-scrapper/internal/app/consult"
 )
 
-type consultFileRepository struct {
+type queryFileRepository struct {
 	dst      string
 	fileName string
 }
 
-func NewConsultFileRepository(dst, fileName string) (*consultFileRepository, error) {
-	var repo consultFileRepository
+func NewQueryFileRepository(dst, fileName string) (*queryFileRepository, error) {
+	var repo queryFileRepository
 	err := initDir(dst)
 	if err == nil {
 		repo.dst = dst
@@ -24,7 +24,7 @@ func NewConsultFileRepository(dst, fileName string) (*consultFileRepository, err
 	return &repo, err
 }
 
-func (pR *consultFileRepository) SaveOne(content consult.Consult) error {
+func (pR *queryFileRepository) SaveOne(content consult.Consult) error {
 	var all []consult.Consult
 	fileName := filepath.Join(pR.dst, pR.fileName+".json")
 
@@ -44,7 +44,7 @@ func (pR *consultFileRepository) SaveOne(content consult.Consult) error {
 
 }
 
-func (pR *consultFileRepository) DeleteOne(index int) error {
+func (pR *queryFileRepository) DeleteOne(index int) error {
 	var all []consult.Consult
 	fileName := filepath.Join(pR.dst, pR.fileName+".json")
 
@@ -72,7 +72,7 @@ func (pR *consultFileRepository) DeleteOne(index int) error {
 
 }
 
-func (pR *consultFileRepository) GetAll() ([]consult.Consult, error) {
+func (pR *queryFileRepository) GetAll() ([]consult.Consult, error) {
 	var formParams []consult.Consult
 	fileName := filepath.Join(pR.dst, pR.fileName+".json")
 

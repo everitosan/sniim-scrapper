@@ -9,7 +9,7 @@ import (
 type Repository struct {
 	Market            market.MarketRepository
 	Params            form.ParamsRepository
-	Consult           consult.ConsultRepository
+	Query             consult.QueryRepository
 	ConsultResponse   consult.ConsultResponseRepository
 	Product           form.ProductRepository
 	ProductSource     form.OptionSelectRepository

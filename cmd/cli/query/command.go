@@ -31,9 +31,9 @@ func Command(sniiimAddr string, rContainer repository.Repository) *cobra.Command
 			switch {
 			case list:
 				/*
-				* Case for listing consults
+				* Case for listing queries
 				 */
-				consults, err := rContainer.Consult.GetAll()
+				consults, err := rContainer.Query.GetAll()
 				if err != nil {
 					logrus.Fatal(err)
 				}
@@ -44,7 +44,7 @@ func Command(sniiimAddr string, rContainer repository.Repository) *cobra.Command
 				return
 			case create:
 				/*
-				* Case create a consult
+				* Case create a query
 				 */
 				// Ask category and subcategory
 				newConsult := askBreadCrumb(rContainer.Params)
@@ -70,14 +70,14 @@ func Command(sniiimAddr string, rContainer repository.Repository) *cobra.Command
 				}
 
 				if save {
-					rContainer.Consult.SaveOne(*newConsult)
+					rContainer.Query.SaveOne(*newConsult)
 				} else {
 					res, err := confirmPrompt("¿Desea guardar la consulta?")
 					if err != nil {
 						logrus.Warn("No se guardará el query")
 					}
 					if res == "y" {
-						rContainer.Consult.SaveOne(*newConsult)
+						rContainer.Query.SaveOne(*newConsult)
 					}
 				}
 
@@ -86,7 +86,7 @@ func Command(sniiimAddr string, rContainer repository.Repository) *cobra.Command
 				/*
 				* Delete case
 				 */
-				err := rContainer.Consult.DeleteOne(int(delete))
+				err := rContainer.Query.DeleteOne(int(delete))
 				if err != nil {
 					log.Fatal(err)
 				}
